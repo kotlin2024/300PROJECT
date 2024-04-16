@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        @font-face {
+            font-family: "okchan";
+            src: url('OK CHAN.otf') format('truetype');
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .main {
+            background-image: url('background.jpg');
+            background-position: center;
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .box-container {
+            width: 100vw;
+            height: 100vh;
+
+            display: grid;
+            grid-template-columns: 50vw 50vw;
+        }
+
+        .box-item {
+            width: 100%;
+            height: 100%;
+            font-size: 40px;
+            text-align: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box-item-2 {
+            width: 100%;
+            height: 100%;
+            font-size: 40px;
+            text-align: center;
+
+            display: grid;
+            align-items: center;
+        }
+
+        .image {
+            width: 60%;
+            border-radius: 10%;
+        }
+
+        .introduction {
+            margin-top: 5%;
+            width: 90%;
+            display: flex;
+            justify-content: right;
+        }
+
+        .items {
+            color: #fc3d03;
+            font-family: "okchan"
+            
+        }
+
+        .red {
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="box-container">
+            <div class="box-item">
+                <img class="image"
+                    src="https://static.wikia.nocookie.net/300/images/a/a6/Leonidas.jpg/revision/latest?cb=20221013043700"
+                    alt="이미지">
+
+            </div>
+            <div class="box-item-2">
+                <div class="items">
+                    <p>이름: <span class="red">아무개</span></p>
+                    <p>MBTI: <span class="red">아무개</span></p>
+                    <p>취미: <span class="red">아무개</span></p>
+                    <p>블로그 주소: <span class="red">아무개</span></p>
+                    <p>GitHub 주소: <span class="red">아무개</span></p>
+                    <div class="introduction">
+                        <button type="button" class="btn btn-danger">뒤로가기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
