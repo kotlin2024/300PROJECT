@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>300</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+        * {
+            font-family: "Nanum Brush Script", cursive;
+        }
+
+        .main {
+            color: red;
+
+            background-image: url('https://image.cine21.com/resize/cine21/still/2007/0214/M0020094_FCJG300-0098[W578-].jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        .mycards {
+            width: 1200px;
+            margin: 20px auto 20px auto;
+
+        }
+
+        .mypostingbox {
+            width: 500px;
+            margin: 20px auto 20px auto;
+
+            border: 1px solid white;
+            padding: 20px;
+            border-radius: 5px;
+
+        }
+
+        .form-floating>input {
+            background-color: transparent;
+            color: white;
+
+        }
+
+        .form-floating>label {
+            color: white;
+        }
+
+        .input-group>label {
+            background-color: transparent;
+            color: white;
+        }
+
+        .mypostingbox>button {
+            width: 100%;
+        }
+    </style>
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAjlKUSAT5iR2O-ryHQvj0yzqg_YtsJnOs",
+            authDomain: "sparta-1ddcf.firebaseapp.com",
+            projectId: "sparta-1ddcf",
+            storageBucket: "sparta-1ddcf.appspot.com",
+            messagingSenderId: "169301177898",
+            appId: "1:169301177898:web:785d20d31f89dae100b553",
+            measurementId: "G-4V4GFP7B4H"
+        };
+
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        $("#postingbtn").click(async function () {
+            let image = $('#image').val();
+            let title = $('#title').val();
+            let content = $('#content').val();
+            let date = $('#date').val();
+
+            let doc = {
+                'image': image,
+                'title': title,
+                'content': content,
+                'date': date
+            };
+            await addDoc(collection(db, "albums"), doc);
+            alert('저장 완료!');
+            window.location.reload();
+        })
+
+
+        $(document).ready(function () {
+            fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then(res => res.json()).then(data => {
+                let asdf = data['temp']
+                if (ondoo < 20) {
+                    $('#ondoo').text('추워요');
+                } else {
+                    $('#ondoo').text('더워요');
+                }
+            })
+        })
+        function openclose() {
+            $('#postingbox').toggle();
+        }
+        function makecard() {
+            let image = $('#image').val();
+            let title = $('#title').val();
+            let comment = $('#comment').val();
+            let star = $('#star').val();
+
+            let temp_html = `
+            <div class="col">
+                <div class="card h-100">
+                    <img src="${image}">
+                    <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="card-text">${star}</p>
+                        <p class="card-text">${comment}</p>
+
+                    </div>
+                </div>
+            </div>`;
+            $('#card').append(temp_html);
+        }
+    </script>
+</head>
+
+<body>
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 text-danger">300</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">현재 기온: <span id="ondoo"></span></a></li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
+                        aria-label="Search">
+                </form>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-outline-light me-2">Login</button>
+                    <button type="button" class="btn btn-danger">Sign-up</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main">
+        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Team 300</h1>
+                <p class="col-md-8 fs-4">개발자를 꿈꾸는 비전공자 4용사들의 처절한 사투</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mycards">
+        <div id="card" class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src=https://i.namu.wiki/i/Qp7SV0qtUUkR2VrJTHgRAbP62FReByedR5TKrMyCgqPbJwLq99qWaq3zxJ7izvm3F2GiYTfrze9z_5y_fTYmGAYXv1LWW8HHH1Q1NfF5xUPD4_SDLb7RGtj0wFTc_GF3O_GzlPC3anGlti2e6QKCdQ.webp>
+                    <div class="card-body">
+                        <h5 class="card-title">정한수</h5>
+                        <p class="card-text">⭐⭐⭐</p>
+                        <p class="card-text">소개</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src=https://i.namu.wiki/i/Qp7SV0qtUUkR2VrJTHgRAbP62FReByedR5TKrMyCgqPbJwLq99qWaq3zxJ7izvm3F2GiYTfrze9z_5y_fTYmGAYXv1LWW8HHH1Q1NfF5xUPD4_SDLb7RGtj0wFTc_GF3O_GzlPC3anGlti2e6QKCdQ.webp>
+                    <div class="card-body">
+                        <h5 class="card-title">이지원</h5>
+                        <p class="card-text">⭐⭐⭐</p>
+                        <p class="card-text">소개</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src=https://i.namu.wiki/i/Qp7SV0qtUUkR2VrJTHgRAbP62FReByedR5TKrMyCgqPbJwLq99qWaq3zxJ7izvm3F2GiYTfrze9z_5y_fTYmGAYXv1LWW8HHH1Q1NfF5xUPD4_SDLb7RGtj0wFTc_GF3O_GzlPC3anGlti2e6QKCdQ.webp>
+                    <div class="card-body">
+                        <h5 class="card-title">이무준</h5>
+                        <p class="card-text">⭐⭐⭐</p>
+                        <p class="card-text">소개</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src=https://i.namu.wiki/i/Qp7SV0qtUUkR2VrJTHgRAbP62FReByedR5TKrMyCgqPbJwLq99qWaq3zxJ7izvm3F2GiYTfrze9z_5y_fTYmGAYXv1LWW8HHH1Q1NfF5xUPD4_SDLb7RGtj0wFTc_GF3O_GzlPC3anGlti2e6QKCdQ.webp>
+                    <div class="card-body">
+                        <h5 class="card-title">박형조</h5>
+                        <p class="card-text">⭐⭐⭐</p>
+                        <p class="card-text">소개</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
