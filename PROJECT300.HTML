@@ -88,6 +88,10 @@
         .btn {
             font-size: 17px;
         }
+
+        .btnbtn {
+            font-size: 17px;
+        }
     </style>
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
@@ -96,7 +100,7 @@
         import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { query, orderBy } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { doc, updateDoc, deleteField } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { doc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 
         // Firebase 구성 정보 설정
@@ -150,15 +154,24 @@
             let date = row['date'];
             let result = row['result'];
             let time = row['time'];
+            let id = doc.id;
 
             let temp_html = `<tr>
                         <td>${name}</td>
                         <td>${result}</td>
                         <td>${date}</td>
                         <td>${time}</td>
-                        <td><button type="button" class="btn btn-outline-light">삭제</button></td>
+                        <td><button type="button" class="btn btn-outline-light" id="${id}">삭제</button></td>
                       </tr>`;
             $('#visit').append(temp_html);
+        });
+
+        $(".btn").click(async function () {
+            if (this.id != "save") {
+                await deleteDoc(doc(db, "guestbook", this.id));
+                alert('데이터가 삭제되었다르타!!!!!');
+                window.location.reload();
+            }
         });
 
         let url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
@@ -179,7 +192,8 @@
 <body>
     <div class="mytitle">
         <h1>Team 300</h1>
-        <h4>개발자를 꿈꾸는 비전공자 용사들의 처절한 사투</h4> <h5>  오늘의 날씨: <span id ="temperature">추울지도모르고더울지도모른다</span></h5>
+        <h4>개발자를 꿈꾸는 비전공자 용사들의 처절한 사투</h4>
+        <h5> 오늘의 날씨: <span id="temperature">추울지도모르고더울지도모른다</span></h5>
     </div>
     <div class="container">
         <div class="row">
