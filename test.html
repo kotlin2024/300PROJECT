@@ -43,7 +43,7 @@
         }
     </style>
     <script>
-        let counts = 0;
+        
         function makeresult() {
             let name = $('#nick').val();
             let result = $('#comment').val();
@@ -54,11 +54,11 @@
             $('#nick').val('');
             $('#comment').val('');
             alert('작성완료!');
-            counts++;
+            
             let date = new Date().toLocaleDateString();
             let time = new Date().toLocaleTimeString();
             let temp_html = `<tr>
-                    <th scope="row">${counts}</th>
+                   
                     <td>${name}</td>
                     <td>${result}</td>
                     <td>${date}</td>
@@ -85,7 +85,6 @@
             <table class="table" id="visit">
                 <thead>
                     <tr>
-                        <th width=10% scope="col">번호</th>
                         <th width=10% scope="col">작성자</th>
                         <th width=60% scope="col">댓글 내용</th>
                         <th width=10% scope="col">작성일자</th>
@@ -95,9 +94,6 @@
 
             </table>
         </div>
-    </div>
-    <div>
-        <h7>3212321</h7>
     </div>
     
 </body>

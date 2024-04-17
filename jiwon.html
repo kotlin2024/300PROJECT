@@ -71,14 +71,54 @@
         .items {
             color: #fc3d03;
             font-family: "okchan"
-            
+
         }
 
         .red {
             color: white;
         }
+
+        .shadow {
+            display: none;
+            
+        }
+        .re{
+            width: 200px;
+            margin: 20px auto 20px auto;
+        }
     </style>
 
+    <script>
+        function change() {
+            let password = document.getElementById('word').value; 
+            if (password === "1111") { 
+                let comment = document.getElementById('black');
+                comment.classList.toggle('shadow');
+                document.getElementById('word').value = ""; 
+            } else {
+                alert("올바른 비밀번호를 입력하세요.")
+            }
+           
+        }
+
+        function good() {
+
+            let newname = document.getElementById('black').querySelectorAll('input')[0].value;
+            document.getElementById('name').innerText = newname;
+            let newmbti = document.getElementById('black').querySelectorAll('input')[1].value;
+            document.getElementById('mbti').innerText = newmbti;
+            let newhob = document.getElementById('black').querySelectorAll('input')[2].value;
+            document.getElementById('hob').innerText = newhob;
+            let newblog = document.getElementById('black').querySelectorAll('input')[3].value;
+            document.getElementById('blog').innerText = newblog;
+            let newgit = document.getElementById('black').querySelectorAll('input')[4].value;
+            document.getElementById('git').innerText = newgit;
+            document.getElementById('black').classList.remove('shadow');
+            alert('수정완료!');
+            let made = document.getElementById('black');
+            made.classList.toggle('shadow');
+        }
+    </script>
 </head>
 
 <body>
@@ -92,13 +132,35 @@
             </div>
             <div class="box-item-2">
                 <div class="items">
-                    <p>이름: <span class="red">이지원</span></p>
-                    <p>MBTI: <span class="red">ISTP</span></p>
-                    <p>취미: <span class="red">축구 경기 관람</span></p>
-                    <p>블로그 주소: <span class="red">https://velog.io/@vptl7211/posts</span></p>
-                    <p>GitHub 주소: <span class="red">https://github.com/gooddle</span></p>
-                    <div class="introduction">
-                        <a href="./PROJECT300.HTML" class="btn btn-danger">뒤로가기</a>
+                    <p>이름: <span class="red" id="name">이지원</span></p>
+                    <p>MBTI: <span class="red" id="mbti">ISTP</span></p>
+                    <p>취미: <span class="red" id="hob">축구 경기 관람</span></p>
+                    <p>블로그 주소: <a href="https://velog.io/@vptl7211/posts" class="red" id="blog">바로가기</a></p>
+                    <p>GitHub 주소: <a href="https://github.com/gooddle" class="red" id="git">바로가기</a></p>
+
+                    <div class="remake">
+                        <div class="re" id="remade">
+                            <input type="password" class="form-control" id="word" placeholder="비밀번호를 입력하세요 "
+                            aria-label="default input example">
+                        </div>
+                        
+                        <button type="button" onclick="change()" class="btn btn-warning" id="pwd">비밀 번호 확인</button>
+                        <div class="shadow" id="black">
+                            <input class="form-control" type="text" placeholder="변경할 이름 "
+                                aria-label="default input example">
+                            <input class="form-control" type="text" placeholder="변경할 MBTI"
+                                aria-label="default input example">
+                            <input class="form-control" type="text" placeholder="변경할 취미"
+                                aria-label="default input example">
+                            <input class="form-control" type="text" placeholder="변경할 블로그 주소"
+                                aria-label="default input example">
+                            <input class="form-control" type="text" placeholder="변경할 GitHub 주소"
+                                aria-label="default input example">
+                            <button type="button" onclick="good()" class="btn btn-primary">수정 하기</button>
+                        </div>
+                        <div class="introduction">
+                            <a href="./PROJECT300.HTML" class="btn btn-danger">뒤로가기</a>
+                        </div>
                     </div>
                 </div>
             </div>
