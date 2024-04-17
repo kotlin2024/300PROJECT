@@ -129,8 +129,8 @@
             let result = $('#comment').val();
             let password = $('#pwinput').val();
 
-            if (name.trim() === '' || result.trim() === '') {
-                alert('닉네임과 댓글을 작성해주세요!');
+            if (name.trim() === '' || result.trim() === ''|| password.trim() === '') {
+                alert('닉네임과 댓글, 비밀번호를 작성해주세요!');
                 return;
             }
 
