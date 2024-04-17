@@ -10,6 +10,10 @@
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
     <!-- JQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -100,7 +104,7 @@
         import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { query, orderBy } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { doc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { doc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 
         // Firebase 구성 정보 설정
@@ -123,6 +127,8 @@
         $("#save").click(async function () {
             let name = $('#nick').val();
             let result = $('#comment').val();
+            let password = $('#pwinput').val();
+
             if (name.trim() === '' || result.trim() === '') {
                 alert('닉네임과 댓글을 작성해주세요!');
                 return;
@@ -139,7 +145,7 @@
                 'result': result,
                 'date': date,
                 'time': time,
-
+                'password': password
             };
             await addDoc(collection(db, "guestbook"), doc);
             alert('저장 완료!');
@@ -161,17 +167,35 @@
                         <td>${result}</td>
                         <td>${date}</td>
                         <td>${time}</td>
-                        <td><button type="button" class="btn btn-outline-light" id="${id}">삭제</button></td>
+                        <td><button type="button" class="btn btn-outline-light" id="${id}" data-toggle="modal" data-target="#exampleModal">삭제</button></td>
                       </tr>`;
             $('#visit').append(temp_html);
         });
 
         $(".btn").click(async function () {
-            if (this.id != "save") {
-                await deleteDoc(doc(db, "guestbook", this.id));
-                alert('데이터가 삭제되었다르타!!!!!');
-                window.location.reload();
+            let id_get = this.id
+
+            if (id_get != "save" && id_get != "delete" && id_get != "close2") {
+                $('#exampleModal').modal('show')
+            } else {
+                return;
             }
+
+            $("#delete").click(async function () {
+                let pw_delete = $('#pw').val();
+
+                const docRef = doc(db, "guestbook", id_get);
+                const docSnap = await getDoc(docRef);
+
+                if (pw_delete != docSnap.data()["password"]) {
+                    alert('비밀번호가 다릅니다');
+                } else {
+                    await deleteDoc(docRef);
+                    alert('댓글이 삭제되었다르타!!!!!');
+                    window.location.reload();
+                }
+            });
+
         });
 
         let url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
@@ -186,6 +210,14 @@
 
         })
 
+        $("#close").click(async function () {
+            window.location.reload(true);
+        });
+
+        $("#close2").click(async function () {
+            window.location.reload(true);
+        });
+        
     </script>
 </head>
 
@@ -195,6 +227,33 @@
         <h4>개발자를 꿈꾸는 비전공자 용사들의 처절한 사투</h4>
         <h5> 오늘의 날씨: <span id="temperature">추울지도모르고더울지도모른다</span></h5>
     </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">비밀번호를 입력해주세요</h5>
+                    <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">비밀번호:</label>
+                            <input type="text" class="form-control" id="pw">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close2">닫기</button>
+                    <button type="button" class="btn btn-primary" id="delete">삭제하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
@@ -229,6 +288,8 @@
         <input type="text" class="form-control" id="nick" placeholder="작성자">
         <label for="comment" class="form-label">댓글</label>
         <textarea class="form-control" id="comment" rows="3"></textarea>
+        <label for="nick" class="form-label">비밀번호</label>
+        <input type="text" class="form-control" id="pwinput" placeholder="비밀번호">
         <div class="mybtn">
             <button type="button" id="save" class="btn btn-danger">기록하기</button>
         </div>
