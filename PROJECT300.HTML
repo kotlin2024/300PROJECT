@@ -145,21 +145,28 @@
         import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { query, orderBy } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { doc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
+        import firebaseConfig from "../firebase.js";
 
         // Firebase 구성 정보 설정
-        const firebaseConfig = {
-            apiKey: "AIzaSyCC0ANT1sbrdnLzZNJi8daKUcRyf2-Qxdo",
-            authDomain: "sparta-9b8b0.firebaseapp.com",
-            projectId: "sparta-9b8b0",
-            storageBucket: "sparta-9b8b0.appspot.com",
-            messagingSenderId: "1038157655578",
-            appId: "1:1038157655578:web:0c483ab828b887bd0caba3"
+        const apikey = firebaseConfig.apiKey;
+        const authDomain = firebaseConfig.authDomain;
+        const projectId = firebaseConfig.projectId;
+        const storageBucket = firebaseConfig.storageBucket;
+        const messagingSenderId = firebaseConfig.messagingSenderId;
+        const appId = firebaseConfig.appId;
+
+        const firebaseConfig2 = {
+            apiKey: apikey,
+            authDomain: authDomain,
+            projectId: projectId,
+            storageBucket: storageBucket,
+            messagingSenderId: messagingSenderId,
+            appId: appId
         };
 
 
         // Firebase 인스턴스 초기화
-        const app = initializeApp(firebaseConfig);
+        const app = initializeApp(firebaseConfig2);
         const db = getFirestore(app);
 
 
@@ -325,24 +332,24 @@
             <div class="col-lg-4">
                 <!-- 이미지를 클릭하여 링크로 이동 -->
                 <a href="jiwon.html">
-                    <img class="bd-placeholder-img rounded-circle" src="jiwon.jpg"
-                        alt="Your Image" width="140" height="140">
+                    <img class="bd-placeholder-img rounded-circle" src="jiwon.jpg" alt="Your Image" width="140"
+                        height="140">
                 </a>
                 <h2 class="fw-normal">이지원</h2>
 
             </div>
             <div class="col-lg-4">
                 <a href="mujun.html">
-                    <img class="bd-placeholder-img rounded-circle" src="mujun.jpeg"
-                        alt="Your Image" width="140" height="140">
+                    <img class="bd-placeholder-img rounded-circle" src="mujun.jpeg" alt="Your Image" width="140"
+                        height="140">
                 </a>
                 <h2 class="fw-normal">이무준</h2>
 
             </div>
             <div class="col-lg-4">
                 <a href="hjp.html">
-                    <img class="bd-placeholder-img rounded-circle" src="hjp.png"
-                        alt="Your Image" width="140" height="140">
+                    <img class="bd-placeholder-img rounded-circle" src="hjp.png" alt="Your Image" width="140"
+                        height="140">
                 </a>
                 <h2 class="fw-normal">박형조</h2>
 
