@@ -71,6 +71,18 @@
             color: red;
             font-size: 38px;
             font-family: "okchan";
+
+            text-shadow: 0px 0px 5px black;
+        }
+
+        .table {
+            color: #cca3a9;
+            text-shadow: 0px 0px 5px black;
+        }
+
+        .form-label {
+            color: white;
+            text-shadow: 0px 0px 5px black;
         }
         
     </style>
@@ -85,12 +97,12 @@
 
         // Firebase 구성 정보 설정
         const firebaseConfig = {
-            apiKey: ,
-            authDomain: ,
-            projectId: ,
-            storageBucket: ,
-            messagingSenderId: ,
-            appId: 
+            apiKey: "AIzaSyCC0ANT1sbrdnLzZNJi8daKUcRyf2-Qxdo",
+            authDomain: "sparta-9b8b0.firebaseapp.com",
+            projectId: "sparta-9b8b0",
+            storageBucket: "sparta-9b8b0.appspot.com",
+            messagingSenderId: "1038157655578",
+            appId: "1:1038157655578:web:0c483ab828b887bd0caba3"
         };
 
 
@@ -121,13 +133,13 @@
                 'time': time,
 
             };
-            await addDoc(collection(db, "albums"), doc);
+            await addDoc(collection(db, "guestbook"), doc);
             alert('저장 완료!');
             window.location.reload();
         });
 
 
-        let docs = await getDocs(query(collection(db, "albums"), orderBy("time", "desc")));
+        let docs = await getDocs(query(collection(db, "guestbook"), orderBy("time", "desc")));
         docs.forEach((doc) => {
             let row = doc.data();
             let name = row['name'];
@@ -182,12 +194,12 @@
         </div>
     </div>
     <div class="mb-3">
-        <label for="nick" class="form-label">닉네임</label>
-        <input type="text" class="form-control" id="nick" placeholder="닉네임">
+        <label for="nick" class="form-label">작성자</label>
+        <input type="text" class="form-control" id="nick" placeholder="작성자">
         <label for="comment" class="form-label">댓글</label>
         <textarea class="form-control" id="comment" rows="3"></textarea>
         <div class="mybtn">
-            <button type="button" id="save" class="btn btn-primary">기록하기</button>
+            <button type="button" id="save" class="btn btn-danger">기록하기</button>
         </div>
     </div>
     <div>
@@ -195,10 +207,10 @@
             <table class="table" id="visit">
                 <thead>
                     <tr>
-                        <th style="color: #cca3a9" width="10%" scope="col">작성자</th>
+                        <th style="color: #cca3a9" width="8%" scope="col">작성자</th>
                         <th style="color: #cca3a9" width="60%" scope="col">댓글 내용</th>
-                        <th style="color: #cca3a9" width="10%" scope="col">작성일자</th>
-                        <th style="color: #cca3a9" width=10% scope="col">작성시간</th>
+                        <th style="color: #cca3a9" width="12%" scope="col">작성일자</th>
+                        <th style="color: #cca3a9" width=20% scope="col">작성시간</th>
                     </tr>
                 </thead>
 
