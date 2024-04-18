@@ -150,28 +150,21 @@
         import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { query, orderBy } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { doc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import firebaseConfig from "../firebase.js";
+        
 
         // Firebase 구성 정보 설정
-        const apikey = firebaseConfig.apiKey;
-        const authDomain = firebaseConfig.authDomain;
-        const projectId = firebaseConfig.projectId;
-        const storageBucket = firebaseConfig.storageBucket;
-        const messagingSenderId = firebaseConfig.messagingSenderId;
-        const appId = firebaseConfig.appId;
-
-        const firebaseConfig2 = {
-            apiKey: apikey,
-            authDomain: authDomain,
-            projectId: projectId,
-            storageBucket: storageBucket,
-            messagingSenderId: messagingSenderId,
-            appId: appId
+        const firebaseConfig = {
+            apiKey: "AIzaSyCC0ANT1sbrdnLzZNJi8daKUcRyf2-Qxdo",
+            authDomain: "sparta-9b8b0.firebaseapp.com",
+            projectId: "sparta-9b8b0",
+            storageBucket: "sparta-9b8b0.appspot.com",
+            messagingSenderId: "1038157655578",
+            appId: "1:1038157655578:web:0c483ab828b887bd0caba3"
         };
 
 
         // Firebase 인스턴스 초기화
-        const app = initializeApp(firebaseConfig2);
+        const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
 
