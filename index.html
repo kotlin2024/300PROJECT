@@ -248,6 +248,8 @@
 
         let url2 = "https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=Jb0o9OuE9cV9FW%2Bg5lb7m%2FTsxteCtqa%2BnqryZW%2FAC%2F5O36Ksr6qexC%2FlVc%2B4uFPccpUVeY5UjKSnvV241NojGw%3D%3D&returnType=JSON&numOfRows=5&pageNo=1&sidoName=%EC%84%9C%EC%9A%B8&ver=1.0";
 
+        console.log(url2)
+
         fetch(url2).then(res => res.json()).then(data => {
             let khaiGrade = data['response']['body']['items'][0]['khaiGrade'];
 
@@ -274,16 +276,18 @@
 
         let url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=Jb0o9OuE9cV9FW%2Bg5lb7m%2FTsxteCtqa%2BnqryZW%2FAC%2F5O36Ksr6qexC%2FlVc%2B4uFPccpUVeY5UjKSnvV241NojGw%3D%3D&pageNo=1&numOfRows=5&dataType=JSON&base_date=${year}${month}${todaydate}&base_time=${hour}00&nx=60&ny=127`;
 
+        console.log(url)
+
         fetch(url).then(res => res.json()).then(data => {
             let temperature = data['response']['body']['items']['item'][3]['obsrValue'];
-            console.log(temperature)
+
             if (temperature >= 20) {
-                $('#tempnumb').text(temperature);
+                $('#tempnumb').text(`${temperature} ℃`);
                 $('#temperature').text("덥다");
                 $('#tempquote').text("더운 날씨엔 더 땀나도록 힘차게!!!");
             }
             else {
-                $('#tempnumb').text(temperature);
+                $('#tempnumb').text(`${temperature} ℃`);
                 $('#temperature').text("춥다");
                 $('#tempquote').text("춥다고 움츠러들지 말아라!!!");
             }
@@ -306,10 +310,10 @@
         <h1>Team 300</h1>
         <h4>개발자를 꿈꾸는 비전공자 용사들의 처절한 사투</h4>
         <div class="api">
-            <h6> 오늘의 온도: <span id="tempnumb"></span>℃</h6>
-            <h6> 오늘의 날씨: <span id="temperature"></span></h6>
+            <h6> 오늘의 온도: <span id="tempnumb">데이터 불러오는 중!</span></h6>
+            <h6> 오늘의 날씨: <span id="temperature">데이터 불러오는 중!</span></h6>
             <h6><span id="tempquote"></span></h6>
-            <h6> 오늘의 대기 지수: <span id="khaiGrade"></span></h6>
+            <h6> 오늘의 대기 지수: <span id="khaiGrade">데이터 불러오는 중!</span></h6>
             <h6><span id="wind"></span></h6>
         </div>
     </div>
