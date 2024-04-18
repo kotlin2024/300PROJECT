@@ -252,17 +252,19 @@
 
         });
 
+
         let url2 = "https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=Jb0o9OuE9cV9FW%2Bg5lb7m%2FTsxteCtqa%2BnqryZW%2FAC%2F5O36Ksr6qexC%2FlVc%2B4uFPccpUVeY5UjKSnvV241NojGw%3D%3D&returnType=JSON&numOfRows=5&pageNo=1&sidoName=%EC%84%9C%EC%9A%B8&ver=1.0";
 
         fetch(url2).then(res => res.json()).then(data => {
             let khaiGrade = data['response']['body']['items'][0]['khaiGrade'];
-            if (khaiGrade = 4) {
+            console.log(khaiGrade)
+            if (khaiGrade == 4) {
                 $('#khaiGrade').text("매우 나쁨");
                 $('#wind').text("그렇지만 그 어떤 모래 바람도 우리들을 막을 수 없다!!!");
-            } else if (khaiGrade = 3) {
+            } else if (khaiGrade == 3) {
                 $('#khaiGrade').text("나쁨");
                 $('#wind').text("그렇지만 그 어떤 모래 바람도 우리들을 막을 수 없다!!!");
-            } else if (khaiGrade = 2) {
+            } else if (khaiGrade == 2) {
                 $('#khaiGrade').text("보통");
                 $('#wind').text("공기가 보통이니 다함께 행군!!!");
             } else {
@@ -271,9 +273,16 @@
             }
         });
 
-        let url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
+        const today = new Date();
+        let year = today.getFullYear();
+        let month = ('0' + (today.getMonth() + 1)).slice(-2);
+        let todaydate = today.getDate();
+        let hour = today.getHours();
+
+        let url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=Jb0o9OuE9cV9FW%2Bg5lb7m%2FTsxteCtqa%2BnqryZW%2FAC%2F5O36Ksr6qexC%2FlVc%2B4uFPccpUVeY5UjKSnvV241NojGw%3D%3D&pageNo=1&numOfRows=5&dataType=JSON&base_date=${year}${month}${todaydate}&base_time=${hour}00&nx=60&ny=127`;
+
         fetch(url).then(res => res.json()).then(data => {
-            let temperature = data['temp'];
+            let temperature = data['response']['body']['items']['item'][3]['obsrValue'];
             if (temperature >= 20) {
                 $('#temperature').text("덥다");
                 $('#tempquote').text("더운 날씨엔 더 땀나도록 힘차게!!!");
