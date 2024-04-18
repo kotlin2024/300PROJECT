@@ -272,7 +272,7 @@
         let year = today.getFullYear();
         let month = ('0' + (today.getMonth() + 1)).slice(-2);
         let todaydate = today.getDate();
-        let hour = ('0' + (today.getHours() - 1)).slice(-2); 
+        let hour = ('0' + ((today.getHours() + 23)%24)).slice(-2); 
 
         let url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=Jb0o9OuE9cV9FW%2Bg5lb7m%2FTsxteCtqa%2BnqryZW%2FAC%2F5O36Ksr6qexC%2FlVc%2B4uFPccpUVeY5UjKSnvV241NojGw%3D%3D&pageNo=1&numOfRows=5&dataType=JSON&base_date=${year}${month}${todaydate}&base_time=${hour}00&nx=60&ny=127`;
 
