@@ -28,7 +28,7 @@
         }
 
         .api {
-            margin-top: 13vh;
+            margin-top: 8vh;
         }
 
         h1 {
@@ -276,11 +276,14 @@
 
         fetch(url).then(res => res.json()).then(data => {
             let temperature = data['response']['body']['items']['item'][3]['obsrValue'];
+            console.log(temperature)
             if (temperature >= 20) {
+                $('#tempnumb').text(temperature);
                 $('#temperature').text("덥다");
                 $('#tempquote').text("더운 날씨엔 더 땀나도록 힘차게!!!");
             }
             else {
+                $('#tempnumb').text(temperature);
                 $('#temperature').text("춥다");
                 $('#tempquote').text("춥다고 움츠러들지 말아라!!!");
             }
@@ -303,6 +306,7 @@
         <h1>Team 300</h1>
         <h4>개발자를 꿈꾸는 비전공자 용사들의 처절한 사투</h4>
         <div class="api">
+            <h6> 오늘의 온도: <span id="tempnumb"></span>℃</h6>
             <h6> 오늘의 날씨: <span id="temperature"></span></h6>
             <h6><span id="tempquote"></span></h6>
             <h6> 오늘의 대기 지수: <span id="khaiGrade"></span></h6>
