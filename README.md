@@ -41,4 +41,4 @@
 
 <strong>와이어프레임</strong>
 
-![Picture](IMG_3978.jpg)
+![Picture](wire.png)
