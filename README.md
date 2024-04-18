@@ -8,7 +8,7 @@
 |이무준|<code>팀원</code>|INFJ|[바로가기](https://moomoo11.tistory.com/)|[바로가기](https://github.com/Moo-moo-11)|항상 최선을 다하기|
 |이지원|<code>팀원</code>|ISTP|[바로가기](https://velog.io/@vptl7211/posts)|[바로가기](https://github.com/gooddle)|끝까지 화이팅|
 
-![Picture](groupphoto.PNG)
+![Picture]
 
 ### 팀 소개
 
