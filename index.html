@@ -182,15 +182,11 @@
             $('#nick').val('');
             $('#comment').val('');
 
-            let date = new Date().toLocaleDateString();
-            let time = new Date().toLocaleTimeString();
             const fulldate = new Date();
 
             let doc = {
                 'name': name,
                 'result': result,
-                'date': date,
-                'time': time,
                 'password': password,
                 'fulldate': fulldate
             };
@@ -275,12 +271,6 @@
         let month = ('0' + (today.getMonth() + 1)).slice(-2);
         let todaydate = today.getDate();
         let hour = ('0' + today.getHours()).slice(-2);
-
-        console.log(year)
-        console.log(month)
-        console.log(todaydate)
-        console.log(hour)
-        console.log(today.getMinutes())
 
         let url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=Jb0o9OuE9cV9FW%2Bg5lb7m%2FTsxteCtqa%2BnqryZW%2FAC%2F5O36Ksr6qexC%2FlVc%2B4uFPccpUVeY5UjKSnvV241NojGw%3D%3D&pageNo=1&numOfRows=5&dataType=JSON&base_date=${year}${month}${todaydate}&base_time=${hour}00&nx=60&ny=127`;
 
